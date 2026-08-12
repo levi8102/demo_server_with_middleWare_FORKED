@@ -1,8 +1,19 @@
 import { prisma } from "../configs/db.config.js";
 import { CreateUserDto } from "../dtos/user.dto.js";
 
-export async function findAll() {
+export async function findAll(email?: string) {
+    if (email) {
+        const users = await prisma.user.findMany({
+            where: {
+                email: email
+            }
+        });
+
+        return users;
+    }
+
     const users = await prisma.user.findMany();
+
     return users;
 }
 

@@ -5,7 +5,8 @@ const adapter = new PrismaMariaDb({
     host: 'localhost',
     user: 'root',
     database: 'demo_db',
-    password: '1748arijiT#'
+    password: 'Gourab@8102',
+    allowPublicKeyRetrieval: true
 });
 
 export const prisma = new PrismaClient({

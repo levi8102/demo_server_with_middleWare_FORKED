@@ -1,16 +1,24 @@
 import { findAllUsers, findUserById, createUser } from "../services/user.services.js";
 import { Request, Response, NextFunction } from "express";
 
-export async function getAllUsersController(_req: Request, res: Response, next: NextFunction) {
+export async function getAllUsersController(
+    req: Request,
+    res: Response,
+    next: NextFunction
+) {
     try {
-        const response = await findAllUsers();
+        const email = req.query.email as string | undefined;
+        console.log("QUERY EMAIL:", email);
+
+        const response = await findAllUsers(email);
+
         res.json({
             message: 'OK',
             status: 200,
             data: response
         });
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 

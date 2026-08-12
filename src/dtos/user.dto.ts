@@ -6,3 +6,18 @@ export const createUserSchema = z.object({
 });
 
 export type CreateUserDto = z.infer<typeof createUserSchema>;
+
+
+// for url parametr
+export const getUserByIdParamsSchema = z.object({
+    id: z.coerce.number().int().positive()
+});
+
+
+// for query parameter 
+
+export const getUsersQuerySchema = z.object({
+    email: z.email().optional()
+});
+
+
