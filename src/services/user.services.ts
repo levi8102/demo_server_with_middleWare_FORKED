@@ -1,10 +1,17 @@
 import { CreateUserDto } from "../dtos/user.dto.js";
-import { findAll, findById, create } from "../repositories/user.repository.js";
-import { NotfoundError } from "../utils/errors/app.error.js";
+import {
+    findAll,
+    findByEmail,
+    findById,
+    create
+} from "../repositories/user.repository.js";import { NotfoundError } from "../utils/errors/app.error.js";
 
 export async function findAllUsers(email?: string) {
-    const users = await findAll(email);
-    return users;
+    if (email) {
+        return await findByEmail(email);
+    }
+
+    return await findAll();
 }
 export async function findUserById(id: number) {
     const user = await findById(id);
